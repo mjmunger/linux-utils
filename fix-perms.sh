@@ -13,7 +13,7 @@ usage() {
 }
 
 check_args() {
-	USEREXITS = `grep -rin $USER /etc/passwd`
+	USEREXITS = `/bin/grep -rin $USER /etc/passwd`
 	if [ "$USEREXITS" = "" ]; then
 		echo "User does not exist?"
 		exit 1
