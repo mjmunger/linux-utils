@@ -26,6 +26,10 @@ check_args() {
 }
 
 fix_permissions() {
+
+	echo "Fixing $TARGETPATH..."
+
+	echo "Changing ownership to: $USER"
 	chown -R $USER:$USER $TARGETPATH
 
 	echo "Fixing file permissions..."
