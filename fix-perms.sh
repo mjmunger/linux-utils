@@ -13,7 +13,7 @@ usage() {
 }
 
 check_args() {
-	USEREXITS=`/bin/grep -rin $USER /etc/passwd`
+	USEREXITS=`grep -rin $USER /etc/passwd`
 	if [ "$USEREXITS" = "" ]; then
 		echo "User does not exist?"
 		exit 1
@@ -30,10 +30,10 @@ fix_permissions() {
 	chown -R $USER:$USER $TARGETPATH
 
 	echo "Fixing file permissions..."
-	/usr/bin/find . type -f -exec chmod 0644 {} \;
+	find . type -f -exec chmod 0644 {} \;
 
 	echo "Fixing directory permissions..."
-	/usr/bin/find . -type d -exec chmod 0755 {} \;
+	find . -type d -exec chmod 0755 {} \;
 
 	echo "Done!"
 }
