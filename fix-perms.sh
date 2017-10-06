@@ -8,7 +8,7 @@ usage() {
 	echo "  Resets the file permissions and ownership of files and directories. This assumes the user and group are the same."
 	echo ""
 	echo "Usage:"
-	echo "  fix-perms [path] [username]"
+	echo "  fix-perms [TARGETPATH] [username]"
 	exit 0
 }
 
@@ -19,21 +19,21 @@ check_args() {
 		exit 1
 	fi
 
-	if [ ! -d $PATH ]; then
-		echo "Path ($PATH) does not exist!"
+	if [ ! -d $TARGETPATH ]; then
+		echo "TARGETPATH ($TARGETPATH) does not exist!"
 		exit 1;
 	fi
 }
 
 fix_permissions() {
-	cd $PATH
-	chown -R $USER:$USER $PATH
+	cd $TARGETPATH
+	chown -R $USER:$USER $TARGETPATH
 
 	echo "Fixing file permissions..."
-	find . type -f -exec chmod 0644 {} \;
+	/usr/bin/find . type -f -exec chmod 0644 {} \;
 
 	echo "Fixing directory permissions..."
-	find . -type d -exec chmod 0755 {} \;
+	/usr/bin/find . -type d -exec chmod 0755 {} \;
 
 	echo "Done!"
 }
@@ -44,8 +44,8 @@ if [ "$#" -ne 2 ]; then
 	usage
 fi
 
-PATH=$1
+TARGETPATH=$1
 USER=$2
 
-check_args $PATH $USER 
-fix_permissions $PATH $USER
+check_args $TARGETPATH $USER 
+fix_permissions $TARGETPATH $USER
