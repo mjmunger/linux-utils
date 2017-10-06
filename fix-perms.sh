@@ -26,7 +26,6 @@ check_args() {
 }
 
 fix_permissions() {
-	cd $TARGETPATH
 	chown -R $USER:$USER $TARGETPATH
 
 	echo "Fixing file permissions..."
