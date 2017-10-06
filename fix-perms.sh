@@ -30,7 +30,7 @@ fix_permissions() {
 	chown -R $USER:$USER $TARGETPATH
 
 	echo "Fixing file permissions..."
-	find . type -f -exec chmod 0644 {} \;
+	find . -type f -exec chmod 0644 {} \;
 
 	echo "Fixing directory permissions..."
 	find . -type d -exec chmod 0755 {} \;
